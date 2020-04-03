@@ -1,52 +1,13 @@
 Overview
+
 Real-world scenes often have a very large dynamic range (the ratio of brightest to darkest intensities) which can span several orders of magnitude. Such high dynamic range (HDR) images cannot be reproduced directly on conventional displays. For example, if all the intensities of the Memorial Church image are linearly rescaled so the brightest pixels are mapped to the highest displayable intensity, the rest of the image becomes extremely dark; if they are rescaled by larger values, details in darker regions become visible, but those in brighter regions are lost.
 
-
-
 For a more naturalistic appearance, the range of intensities has to be compressed to the low dynamic range of the display, while approximately maintaining the appearance of the image. This process is known as tone mapping or dynamic range compression.
-
-
 
 Requirements
 Linear and logarithmic rescaling
 
 Obtain some HDR test images from Paul Debevec’s HDR page under “Radiance Maps”. Load an HDR image into your program (OpenCV: imread, Matlab: hdrread) and visualize it by linearly rescaling the pixel values. Experiment with different scalings to see the results; include one in which all the intensities fit in the displayable range.
-
-Note that the HDR image contains linear intensity values, while low dynamic range images are quantized nonlinearly, so you will have to apply a gamma correction of approximately 
-1
-/
-2.2
- to get a reasonable image. (Or more accurately, apply the 
-γ
-(
-u
-)
- function from here to the RGB components.) Do this when creating every output image in this assignment.
-
-As a baseline tone mapping algorithm, perform rescaling in the log-luminance domain. That is, compute the luminance 
-L
-=
-0.299
-R
-+
-0.587
-G
-+
-0.114
-B
- and take its log, rescale it to decrease the dynamic range, then undo the log to recover luminances, and use the original colour ratios 
-R
-/
-L
-,
-G
-/
-L
-,
-B
-/
-L
- to reconstruct a colour image. Choose a scaling in the log domain to get an output dynamic range of about 100:1.
 
 Detail enhancement
 
